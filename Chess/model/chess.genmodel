@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/Chess/src" modelPluginID="Chess" modelName="Chess"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="5.0" copyrightFields="false" operationReflection="true" importOrganizing="true">
+  <foreignModel>chess.ecore</foreignModel>
+  <genPackages prefix="Chess" disposableProviderFactory="true" ecorePackage="chess.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="chess.ecore#//PlayerColor">
+      <genEnumLiterals ecoreEnumLiteral="chess.ecore#//PlayerColor/White"/>
+      <genEnumLiterals ecoreEnumLiteral="chess.ecore#//PlayerColor/Black"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="chess.ecore#//SquareColor">
+      <genEnumLiterals ecoreEnumLiteral="chess.ecore#//SquareColor/White"/>
+      <genEnumLiterals ecoreEnumLiteral="chess.ecore#//SquareColor/Black"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="chess.ecore#//MoveDirection">
+      <genEnumLiterals ecoreEnumLiteral="chess.ecore#//MoveDirection/Forward"/>
+      <genEnumLiterals ecoreEnumLiteral="chess.ecore#//MoveDirection/Backward"/>
+      <genEnumLiterals ecoreEnumLiteral="chess.ecore#//MoveDirection/Diagonal"/>
+      <genEnumLiterals ecoreEnumLiteral="chess.ecore#//MoveDirection/LShape"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="chess.ecore#//PromotionType">
+      <genEnumLiterals ecoreEnumLiteral="chess.ecore#//PromotionType/Queen"/>
+      <genEnumLiterals ecoreEnumLiteral="chess.ecore#//PromotionType/Rook"/>
+      <genEnumLiterals ecoreEnumLiteral="chess.ecore#//PromotionType/Bishop"/>
+      <genEnumLiterals ecoreEnumLiteral="chess.ecore#//PromotionType/Knight"/>
+    </genEnums>
+    <genClasses ecoreClass="chess.ecore#//Game">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute chess.ecore#//Game/state"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute chess.ecore#//Game/turn"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference chess.ecore#//Game/players"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference chess.ecore#//Game/board"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference chess.ecore#//Game/moveHistory"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference chess.ecore#//Game/specialMoves"/>
+    </genClasses>
+    <genClasses ecoreClass="chess.ecore#//Player">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute chess.ecore#//Player/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute chess.ecore#//Player/color"/>
+    </genClasses>
+    <genClasses ecoreClass="chess.ecore#//Board">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute chess.ecore#//Board/rows"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute chess.ecore#//Board/columns"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference chess.ecore#//Board/squares"/>
+    </genClasses>
+    <genClasses ecoreClass="chess.ecore#//SpecialMoves">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute chess.ecore#//SpecialMoves/castleQueensideWhite"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute chess.ecore#//SpecialMoves/castleQueensideBlack"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute chess.ecore#//SpecialMoves/castleKingsideWhite"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute chess.ecore#//SpecialMoves/castleKingsideBlack"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference chess.ecore#//SpecialMoves/enPassantSquare"/>
+    </genClasses>
+    <genClasses ecoreClass="chess.ecore#//MoveHistory">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference chess.ecore#//MoveHistory/moves"/>
+    </genClasses>
+    <genClasses ecoreClass="chess.ecore#//Move">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference chess.ecore#//Move/startSquare"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference chess.ecore#//Move/endSquare"/>
+    </genClasses>
+    <genClasses ecoreClass="chess.ecore#//Square">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute chess.ecore#//Square/file"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute chess.ecore#//Square/rank"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute chess.ecore#//Square/color"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference chess.ecore#//Square/piece"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="chess.ecore#//Piece">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute chess.ecore#//Piece/color"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute chess.ecore#//Piece/directionOfMovement"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute chess.ecore#//Piece/distance"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference chess.ecore#//Piece/currentPosition"/>
+    </genClasses>
+    <genClasses ecoreClass="chess.ecore#//King">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute chess.ecore#//King/inCheck"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute chess.ecore#//King/hasMoved"/>
+    </genClasses>
+    <genClasses ecoreClass="chess.ecore#//Queen"/>
+    <genClasses ecoreClass="chess.ecore#//Rook">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute chess.ecore#//Rook/hasMoved"/>
+    </genClasses>
+    <genClasses ecoreClass="chess.ecore#//Bishop"/>
+    <genClasses ecoreClass="chess.ecore#//Knight">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute chess.ecore#//Knight/canJump"/>
+    </genClasses>
+    <genClasses ecoreClass="chess.ecore#//Pawn">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute chess.ecore#//Pawn/hasMoved"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute chess.ecore#//Pawn/promotionType"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

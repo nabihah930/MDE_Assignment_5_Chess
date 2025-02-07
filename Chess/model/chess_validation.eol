@@ -1,0 +1,26 @@
+
+operation getCurrentPlayer() : Player {
+    return self.players->select(p | p.color = self.turn)->first();
+}
+
+
+operation getPlayerCount() : Integer {
+    return self.players->size();
+}
+
+
+operation validateTurnOrder() : Boolean {
+    if (self.moveHistory->isEmpty()) {
+        return self.turn = 'WHITE';
+    }
+    return self.turn = self.players->at(self.moveHistory.moves.size().mod(2) + 1).color;
+}
+
+
+operation validatePiecesOnValidSquares() : Boolean {
+    return self.board.squares->forAll(s | 
+        s.piece->isEmpty() or 
+        (s.piece.currentPosition.rank >= 1 and s.piece.currentPosition.rank <= self.board.rows and
+        "a".compareTo(s.piece.currentPosition.file) <= 0 and "h".compareTo(s.piece.currentPosition.file) >= 0)
+    );
+}

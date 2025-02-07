@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="chess" nsURI="http://www.example.com/chess" nsPrefix="chess">
+  <eClassifiers xsi:type="ecore:EEnum" name="PlayerColor">
+    <eLiterals name="White"/>
+    <eLiterals name="Black"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="SquareColor">
+    <eLiterals name="White"/>
+    <eLiterals name="Black"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="MoveDirection">
+    <eLiterals name="Forward"/>
+    <eLiterals name="Backward"/>
+    <eLiterals name="Diagonal"/>
+    <eLiterals name="LShape"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="PromotionType">
+    <eLiterals name="Queen"/>
+    <eLiterals name="Rook"/>
+    <eLiterals name="Bishop"/>
+    <eLiterals name="Knight"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Game">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="state" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="turn" eType="#//PlayerColor"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="players" upperBound="2"
+        eType="#//Player" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="board" eType="#//Board"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="moveHistory" eType="#//MoveHistory"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="specialMoves" eType="#//SpecialMoves"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Player">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="color" eType="#//PlayerColor"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Board">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="rows" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="columns" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="squares" upperBound="-1"
+        eType="#//Square" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SpecialMoves">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="castleQueensideWhite" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="castleQueensideBlack" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="castleKingsideWhite" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="castleKingsideBlack" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="enPassantSquare" eType="#//Square"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MoveHistory">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="moves" upperBound="-1"
+        eType="#//Move" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Move">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="startSquare" eType="#//Square"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="endSquare" eType="#//Square"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Square">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="file" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="rank" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="color" eType="#//SquareColor"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="piece" eType="#//Piece"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Piece" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="color" eType="#//PlayerColor"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="directionOfMovement" eType="#//MoveDirection"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="distance" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="currentPosition" eType="#//Square"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="King" eSuperTypes="#//Piece">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="inCheck" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="hasMoved" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Queen" eSuperTypes="#//Piece"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Rook" eSuperTypes="#//Piece">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="hasMoved" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Bishop" eSuperTypes="#//Piece"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Knight" eSuperTypes="#//Piece">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="canJump" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Pawn" eSuperTypes="#//Piece">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="hasMoved" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="promotionType" eType="#//PromotionType"/>
+  </eClassifiers>
+</ecore:EPackage>

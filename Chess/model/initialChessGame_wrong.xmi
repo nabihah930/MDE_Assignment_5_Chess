@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="ASCII"?>
+<chess:Game xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:chess="http://www.example.com/chess">
+  <players name="White"/>
+  <board rows="8" columns="8">
+    <squares file="a" rank="1" color="Black">
+      <piece xsi:type="chess:Rook" currentPosition="//@board/@squares.0"/>
+    </squares>
+    <squares file="b" rank="1">
+      <piece xsi:type="chess:Knight" currentPosition="//@board/@squares.1"/>
+    </squares>
+    <squares file="c" rank="1" color="Black">
+      <piece xsi:type="chess:Bishop" currentPosition="//@board/@squares.2"/>
+    </squares>
+    <squares file="d" rank="1">
+      <piece xsi:type="chess:Queen" currentPosition="//@board/@squares.3"/>
+    </squares>
+    <squares file="e" rank="1" color="Black">
+      <piece xsi:type="chess:King" currentPosition="//@board/@squares.4"/>
+    </squares>
+    <squares file="f" rank="1">
+      <piece xsi:type="chess:Bishop" currentPosition="//@board/@squares.5"/>
+    </squares>
+    <squares file="g" rank="1" color="Black">
+      <piece xsi:type="chess:Knight" currentPosition="//@board/@squares.6"/>
+    </squares>
+    <squares file="h" rank="1">
+      <piece xsi:type="chess:Rook" currentPosition="//@board/@squares.7"/>
+    </squares>
+    <squares file="a" rank="2">
+      <piece xsi:type="chess:Pawn" currentPosition="//@board/@squares.8"/>
+    </squares>
+    <squares file="b" rank="2" color="Black">
+      <piece xsi:type="chess:Pawn" currentPosition="//@board/@squares.9"/>
+    </squares>
+    <squares file="c" rank="2">
+      <piece xsi:type="chess:Pawn" currentPosition="//@board/@squares.10"/>
+    </squares>
+    <squares file="d" rank="2" color="Black">
+      <piece xsi:type="chess:Pawn" currentPosition="//@board/@squares.11"/>
+    </squares>
+    <squares file="e" rank="2">
+      <piece xsi:type="chess:Pawn" currentPosition="//@board/@squares.12"/>
+    </squares>
+    <squares file="f" rank="2" color="Black">
+      <piece xsi:type="chess:Pawn" currentPosition="//@board/@squares.13"/>
+    </squares>
+    <squares file="g" rank="2">
+      <piece xsi:type="chess:Pawn" currentPosition="//@board/@squares.14"/>
+    </squares>
+    <squares file="h" rank="2" color="Black">
+      <piece xsi:type="chess:Pawn" currentPosition="//@board/@squares.15"/>
+    </squares>
+    <squares file="a" rank="3" color="Black"/>
+    <squares file="b" rank="3"/>
+    <squares file="c" rank="3" color="Black"/>
+    <squares file="d" rank="3"/>
+    <squares file="e" rank="3" color="Black"/>
+    <squares file="f" rank="3"/>
+    <squares file="g" rank="3" color="Black"/>
+    <squares file="h" rank="3"/>
+    <squares file="a" rank="4"/>
+    <squares file="b" rank="4" color="Black"/>
+    <squares file="c" rank="4"/>
+    <squares file="d" rank="4" color="Black"/>
+    <squares file="e" rank="4"/>
+    <squares file="f" rank="4" color="Black"/>
+    <squares file="g" rank="4"/>
+    <squares file="h" rank="4" color="Black"/>
+    <squares file="a" rank="5" color="Black"/>
+    <squares file="b" rank="5"/>
+    <squares file="c" rank="5" color="Black"/>
+    <squares file="d" rank="5"/>
+    <squares file="e" rank="5" color="Black"/>
+    <squares file="f" rank="5"/>
+    <squares file="g" rank="5" color="Black"/>
+    <squares file="h" rank="5"/>
+    <squares file="a" rank="6"/>
+    <squares file="b" rank="6" color="Black"/>
+    <squares file="c" rank="6"/>
+    <squares file="d" rank="6" color="Black"/>
+    <squares file="e" rank="6"/>
+    <squares file="f" rank="6" color="Black"/>
+    <squares file="g" rank="6"/>
+    <squares file="h" rank="6" color="Black"/>
+    <squares file="a" rank="7" color="Black">
+      <piece xsi:type="chess:Pawn" color="Black" currentPosition="//@board/@squares.48"/>
+    </squares>
+    <squares file="b" rank="7">
+      <piece xsi:type="chess:Pawn" color="Black" currentPosition="//@board/@squares.49"/>
+    </squares>
+    <squares file="c" rank="7" color="Black">
+      <piece xsi:type="chess:Pawn" color="Black" currentPosition="//@board/@squares.50"/>
+    </squares>
+    <squares file="d" rank="7">
+      <piece xsi:type="chess:Pawn" color="Black" currentPosition="//@board/@squares.51"/>
+    </squares>
+    <squares file="e" rank="7" color="Black">
+      <piece xsi:type="chess:Pawn" color="Black" currentPosition="//@board/@squares.52"/>
+    </squares>
+    <squares file="f" rank="7">
+      <piece xsi:type="chess:Pawn" color="Black" currentPosition="//@board/@squares.53"/>
+    </squares>
+    <squares file="g" rank="7" color="Black">
+      <piece xsi:type="chess:Pawn" color="Black" currentPosition="//@board/@squares.54"/>
+    </squares>
+    <squares file="h" rank="7">
+      <piece xsi:type="chess:Pawn" color="Black" currentPosition="//@board/@squares.55"/>
+    </squares>
+    <squares file="a" rank="8">
+      <piece xsi:type="chess:Rook" color="Black" currentPosition="//@board/@squares.56"/>
+    </squares>
+    <squares file="b" rank="8" color="Black">
+      <piece xsi:type="chess:Knight" color="Black" currentPosition="//@board/@squares.57"/>
+    </squares>
+    <squares file="c" rank="8">
+      <piece xsi:type="chess:Bishop" color="Black" currentPosition="//@board/@squares.58"/>
+    </squares>
+    <squares file="d" rank="8" color="Black">
+      <piece xsi:type="chess:Queen" color="Black" currentPosition="//@board/@squares.59"/>
+    </squares>
+    <squares file="e" rank="8">
+      <piece xsi:type="chess:King" color="Black" currentPosition="//@board/@squares.60"/>
+    </squares>
+    <squares file="f" rank="8" color="Black">
+      <piece xsi:type="chess:Bishop" color="Black" currentPosition="//@board/@squares.61"/>
+    </squares>
+    <squares file="g" rank="8">
+      <piece xsi:type="chess:Knight" color="Black" currentPosition="//@board/@squares.62"/>
+    </squares>
+    <squares file="h" rank="8" color="Black">
+      <piece xsi:type="chess:Rook" color="Black" currentPosition="//@board/@squares.63"/>
+    </squares>
+  </board>
+</chess:Game>

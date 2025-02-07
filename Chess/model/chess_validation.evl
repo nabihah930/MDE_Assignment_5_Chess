@@ -1,0 +1,58 @@
+operation getCurrentPlayer() : Player {
+    return self.players.select(p | p.color == self.turn).first();
+}
+
+operation Game getPlayerCount() : Integer {
+    return self.players.size();
+}
+
+context Board {
+    constraint CorrectNumberOfSquares {
+        check: self.squares.size() == 64
+        message: "A chess board must have exactly 64 squares."
+    }
+    constraint KingPresence {
+        check: self.squares.piece.select(p | p.isKindOf(King)).size() == 2
+        message: "Both players must have a King on the board."
+    }
+}
+
+
+context Game {
+
+    constraint PlayersHaveDistinctColors {
+        check: self.players.first().color != self.players.last().color
+        message: "The two players must have distinct colors: one WHITE and one BLACK."
+    }
+
+   critique CorrectTurnOrder {
+        check: 
+            (self.moveHistory == null or self.moveHistory.moves.isEmpty())
+            or (self.moveHistory != null and self.moveHistory.moves.size() > 0 
+                and self.turn == self.players.get(self.moveHistory.moves.size().mod(2)).color)
+        message: "Turns must alternate correctly."
+    }
+
+    
+    critique PiecesOnValidSquares {
+        check: self.board.squares->forAll(s | 
+            (s.piece != null and s.piece.currentPosition != null) implies 
+            (s.piece.currentPosition.rank >= 1 and s.piece.currentPosition.rank <= self.board.rows and
+            "a".compareTo(s.piece.currentPosition.file) <= 0 and "h".compareTo(s.piece.currentPosition.file) >= 0))
+        message: "All pieces must be positioned on valid squares within the board."
+    }
+
+    constraint GameHasTwoPlayers {
+        check: self.getPlayerCount() == 2
+        message: "The game should have exactly two players."
+    }
+}
+
+
+context SpecialMoves {
+    critique SpecialMovesShouldBeEnabledIfPiecesHaveNotMoved {
+        check: (self.castleKingsideWhite implies self.board.squares.piece.select(p | p.isKindOf(King) and p.color = 'White' and not p.hasMoved).size() == 1) and
+               (self.castleQueensideWhite implies self.board.squares.piece.select(p | p.isKindOf(Rook) and p.color = 'White' and not p.hasMoved).size() >= 1)
+        message: "Castling should only be possible if the King and Rook involved have not moved."
+    }
+}

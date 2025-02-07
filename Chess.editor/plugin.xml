@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated chess -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="chess.presentation.ChessModelWizardID"
+            name="%_UI_ChessModelWizard_label"
+            class="chess.presentation.ChessModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/ChessModelFile.gif">
+         <description>%_UI_ChessModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated chess -->
+      <editor
+            id="chess.presentation.ChessEditorID"
+            name="%_UI_ChessEditor_label"
+            icon="icons/full/obj16/ChessModelFile.gif"
+            extensions="chess"
+            class="chess.presentation.ChessEditor"
+            contributorClass="chess.presentation.ChessActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>

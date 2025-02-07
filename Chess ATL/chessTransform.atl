@@ -1,0 +1,105 @@
+-- @path RefinedChess=/Chess_Refined/model/chess.ecore
+-- @path InitialChess=/Chess/model/chess.ecore
+
+module chessTransform;
+create OUT : RefinedChess from IN : InitialChess;
+
+-- Rule 1: Transform Game
+rule GameToGame {
+    from 
+        g : InitialChess!Game
+    to 
+        newG : RefinedChess!Game (
+            gameStatus <- thisModule.convertGameStatus(g.state),
+            turn <- g.turn,
+            players <- g.players->collect(p | thisModule.transformPlayer(p)),
+            board <- thisModule.transformBoard(g.board),
+            moveHistory <- g.moveHistory,
+            specialMoves <- g.specialMoves,
+            winner <- OclUndefined,  -- No equivalent in the old model, so set to null
+            elapsedTime <- 0 -- New attribute, initializing with default value
+        )
+}
+
+-- Rule 2: Transform Player
+lazy rule transformPlayer {
+    from 
+        p : InitialChess!Player
+    to 
+        newP : RefinedChess!Player (
+            name <- p.name
+        )
+}
+
+-- Lazy Rule 3: Transform Board
+lazy rule transformBoard {
+    from 
+        b : InitialChess!Board
+    to 
+        newB : RefinedChess!Board (
+            rows <- b.rows,
+            columns <- b.columns,
+            squares <- b.squares->collect(s | thisModule.transformSquare(s))
+        )
+}
+
+-- Lazy Rule 4: Transform Square
+lazy rule transformSquare {
+    from 
+        s : InitialChess!Square
+    to 
+        newS : RefinedChess!Square (
+            file <- s.file,
+            rank <- s.rank,
+            color <- thisModule.convertSquareColor(s.color), -- Convert Enum
+            piece <- s.piece
+        )
+}
+
+-- Rule 4: Transform Move to ChessMove
+lazy rule moveToChessMove {
+    from 
+        m : InitialChess!Move
+    to 
+        newM : RefinedChess!ChessMove (
+            startSquare <- m.startSquare,
+            endSquare <- m.endSquare,
+            movedPiece <- OclUndefined,  -- No equivalent in old model
+            capturedPiece <- OclUndefined, -- No equivalent in old model
+            moveDirection <- OclUndefined  -- No equivalent in old model
+        )
+}
+
+-- Rule 5: Transform MoveHistory
+rule MoveHistoryToMoveHistory {
+    from 
+        mh : InitialChess!MoveHistory
+    to 
+        newMH : RefinedChess!MoveHistory (
+            moves <- mh.moves->collect(m | thisModule.moveToChessMove(m))
+        )
+}
+
+-- Helper function to convert old state to GameResult Enum
+helper def : convertGameStatus(state : String) : RefinedChess!GameResult =
+    if state = 'ongoing' then
+        #InProgress
+    else 
+        if state = 'draw' then
+            #Draw
+        else 
+            if state = 'win' then
+                #Win
+            else
+                #InProgress
+            endif
+        endif
+    endif;
+
+-- Helper function to convert SquareColor Enum
+helper def : convertSquareColor(color : String) : RefinedChess!SquareColor =
+    if color = 'black' then
+        #Black
+    else 
+        #White
+    endif;

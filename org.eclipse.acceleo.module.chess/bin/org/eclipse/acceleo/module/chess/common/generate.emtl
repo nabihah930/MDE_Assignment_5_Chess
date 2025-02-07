@@ -54,7 +54,7 @@
             <referredProperty xsi:type="ecore:EReference" href="http://www.example.com/chess#//Game/players"/>
           </iterSet>
         </body>
-        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="    &lt;/ul>&#xA;    &#xA;    &lt;h2>Board&lt;/h2>&#xA;    &lt;a href=&quot;board.html&quot;>View Board Details&lt;/a>&#xA;&lt;/body>&#xA;&lt;/html>&#xA;"/>
+        <body xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="    &lt;/ul>&#xA;    &#xA;    &lt;h2>Board&lt;/h2>&#xA;    &lt;a href=&quot;Board.html&quot;>View Board Details&lt;/a>&#xA;&lt;/body>&#xA;&lt;/html>&#xA;"/>
         <fileUrl xsi:type="ocl.ecore:StringLiteralExp" stringSymbol="ChessIndex.html">
           <eType xsi:type="ocl.ecore:PrimitiveType" href="http://www.eclipse.org/ocl/1.1.0/oclstdlib.ecore#/0/String"/>
         </fileUrl>

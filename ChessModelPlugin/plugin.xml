@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <!-- Product Configuration -->
+   <extension
+         id="product"
+         point="org.eclipse.core.runtime.products">
+      <product
+            application="org.eclipse.e4.ui.workbench.swt.E4Application"
+            name="chessmodelplugin">
+         <property
+               name="applicationCSS"
+               value="platform:/plugin/ChessModelPlugin/css/default.css">
+         </property>
+      </product>
+   </extension>
+   
+   <!-- Command Definitions -->
+   <extension
+      point="org.eclipse.ui.commands">
+      <!-- Command for creating the first chess game (Initial Setup) -->
+	   <command
+	         id="chessplugin.create.firstGame"
+	         name="Create Initial Chess Game"/>
+      <!-- Command for creating the second chess game (Black Castling Kingside) -->
+	   <command
+	         id="chessplugin.create.secondGame"
+	         name="Create Black Castling Kingside Game"/>
+	   <command
+	         id="chessplugin.save"
+	         name="Save Chess Model"/>
+	   <command
+	         id="chessplugin.load"
+	         name="Load Chess Model"/>
+	   <command
+	         id="chessplugin.validate"
+	         name="Validate Chess Model"/>
+	</extension>
+	
+	<!-- Handlers for the Commands -->
+	<extension
+	      point="org.eclipse.ui.handlers">
+      <!-- Handler for Initial Chess Game -->
+	   <handler
+	         class="chessmodelplugin.CreateFirstGameHandler"
+	         commandId="chessplugin.create.firstGame">
+	   </handler>
+      <!-- Handler for Black Castling Kingside Game -->
+	   <handler
+	         class="chessmodelplugin.CreateSecondGameHandler"
+	         commandId="chessplugin.create.secondGame">
+	   </handler>
+	   <handler
+	         class="chessmodelplugin.SaveModelHandler"
+	         commandId="chessplugin.save">
+	   </handler>
+	   <handler
+	         class="chessmodelplugin.LoadModelHandler"
+	         commandId="chessplugin.load">
+	   </handler>
+	   <handler
+	         class="chessmodelplugin.ValidateModelHandler"
+	         commandId="chessplugin.validate">
+	   </handler>
+	</extension>
+	
+	<!-- UI Menu Contribution -->
+	<extension
+	      point="org.eclipse.ui.menus">
+	   <menuContribution locationURI="menu:org.eclipse.ui.main.menu">
+	      <menu
+	            id="chessModelMenu"
+	            label="Chess Model Plugin">
+	         <!-- Button for creating Initial Chess Game -->
+	         <command
+	               commandId="chessplugin.create.firstGame"
+	               label="Create Initial Chess Game"
+	               style="push"/>
+	         <!-- Button for creating Black Castling Kingside Game -->
+	         <command
+	               commandId="chessplugin.create.secondGame"
+	               label="Create Black Castling Kingside Game"
+	               style="push"/>
+	         <!-- Buttons for save, load, and validate -->
+	         <command
+	               commandId="chessplugin.save"
+	               label="Save Model"
+	               style="push"/>
+	         <command
+	               commandId="chessplugin.load"
+	               label="Load Model"
+	               style="push"/>
+	         <command
+	               commandId="chessplugin.validate"
+	               label="Validate Model"
+	               style="push"/>
+	      </menu>
+	   </menuContribution>
+	</extension>
+	
+	<!-- Handler Activation Context -->
+	<extension
+      point="org.eclipse.ui.handlers">
+      <!-- Handler for Initial Chess Game -->
+	   <handler
+	         class="chessmodelplugin.CreateFirstGameHandler"
+	         commandId="chessplugin.create.firstGame">
+	      <activeWhen>
+	         <with variable="activeWorkbenchWindow">
+	            <equals value="true"/>
+	         </with>
+	      </activeWhen>
+	   </handler>
+      <!-- Handler for Black Castling Kingside Game -->
+	   <handler
+	         class="chessmodelplugin.CreateSecondGameHandler"
+	         commandId="chessplugin.create.secondGame">
+	      <activeWhen>
+	         <with variable="activeWorkbenchWindow">
+	            <equals value="true"/>
+	         </with>
+	      </activeWhen>
+	   </handler>
+	   <handler
+	         class="chessmodelplugin.SaveModelHandler"
+	         commandId="chessplugin.save">
+	      <activeWhen>
+	         <with variable="activeWorkbenchWindow">
+	            <equals value="true"/>
+	         </with>
+	      </activeWhen>
+	   </handler>
+	   <handler
+	         class="chessmodelplugin.LoadModelHandler"
+	         commandId="chessplugin.load">
+	      <activeWhen>
+	         <with variable="activeWorkbenchWindow">
+	            <equals value="true"/>
+	         </with>
+	      </activeWhen>
+	   </handler>
+	   <handler
+	         class="chessmodelplugin.ValidateModelHandler"
+	         commandId="chessplugin.validate">
+	      <activeWhen>
+	         <with variable="activeWorkbenchWindow">
+	            <equals value="true"/>
+	         </with>
+	      </activeWhen>
+	   </handler>
+	</extension>
+   
+</plugin>

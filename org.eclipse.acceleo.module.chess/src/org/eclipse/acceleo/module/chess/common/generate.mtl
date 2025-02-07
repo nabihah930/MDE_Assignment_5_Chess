@@ -1,7 +1,7 @@
 [comment encoding = UTF-8 /]
 [module generate('http://www.example.com/chess')]
 
-
+[comment @main/]
 [template public generateIndex(model : Game)]
 [file ('ChessIndex.html', false, 'UTF-8')]
 <html>

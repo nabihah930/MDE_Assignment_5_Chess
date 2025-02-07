@@ -1,0 +1,61 @@
+[comment encoding = UTF-8 /]
+[module generate('http://www.example.com/chess')]
+
+
+[template public generateIndex(model : Game)]
+[file ('ChessIndex.html', false, 'UTF-8')]
+<html>
+<head>
+    <title>Chess Model Overview</title>
+</head>
+<body>
+    <h1>Chess Game Overview</h1>
+    <p>Game Status: [model.gameStatus/]</p>
+    <p>Current Turn: [model.turn/]</p>
+    
+    <h2>Players</h2>
+    <ul>
+        [for (p : Player | model.players)]
+            <li><a href="[p.name/].html">[p.name/]</a></li>
+        [/for]
+    </ul>
+    
+    <h2>Board</h2>
+    <a href="board.html">View Board Details</a>
+</body>
+</html>
+[/file]
+[/template]
+
+[template public generatePlayer(p : Player)]
+[file ('Player.html', false, 'UTF-8')]
+<html>
+<head>
+    <title>Player: [p.name/]</title>
+</head>
+<body>
+    <h1>Player: [p.name/]</h1>
+</body>
+</html>
+[/file]
+[/template]
+
+[template public generateBoard(b : Board)]
+[file ('Board.html', false, 'UTF-8')]
+<html>
+<head>
+    <title>Chess Board</title>
+</head>
+<body>
+    <h1>Chess Board</h1>
+    <table border="1">
+        [for (s : Square | b.squares)]
+            <tr>
+                <td>[s.file/][s.rank/] - [s.color/]</td>
+            </tr>
+        [/for]
+    </table>
+</body>
+</html>
+[/file]
+[/template]
